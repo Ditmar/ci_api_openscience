@@ -24,9 +24,10 @@ jobs:
       - name: Checkout code
         if: github.event_name == 'workflow_dispatch'
         uses: actions/checkout@v2
+
       - name: Test SSH conection
         if: github.event_name == 'workflow_dispatch'
-        uses: appleboy/ssh-action@v2
+        uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
