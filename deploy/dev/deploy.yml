@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  api:
+    image: "ditmar/api:1.0.0-rc.2"
+    ports:
+      - "4000:4000"
+    environment:
+      - "PORT=4000"
+      - "API_URL=https://pokeapi.co/api/v2/pokemon"
+    restart: always
