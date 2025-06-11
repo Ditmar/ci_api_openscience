@@ -1,7 +1,7 @@
 version: "3.0"
 services:
   api:
-    image: "ditmar/api:${API_REST_VERSION}"
+    image: "ditmar/api:1.0.0-rc.2"
     ports:
       - "4000:4000"
     environment:
