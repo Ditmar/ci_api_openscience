@@ -78,10 +78,10 @@ jobs:
           port: 22
           script: |
             cd /home/${{ secrets.EC2_USER }}/deploy/deploy/${{ env.ENV }}
-            export API_REST_VERSION=${{ env.API_REST_VERSION }}
+            export API_REST_VERSION=${{ env.API_REST }}
             export MONGO_INITDB_ROOT_USERNAME=${{ env.MONGO_INITDB_ROOT_USERNAME }}
             export MONGO_INITDB_ROOT_PASSWORD=${{ env.MONGO_INITDB_ROOT_PASSWORD }}
-            echo "API_REST_VERSION=${{ env.API_REST_VERSION }}"
+            echo "API_REST_VERSION=${{ env.API_REST }}"
             docker-compose -f deploy.yml down
             docker-compose -f deploy.yml up -d
             docker system prune -f
