@@ -68,8 +68,15 @@ jobs:
           port: 22
           source: "deploy/${{ env.ENV }}/deploy.yml"
           target: "/home/${{ secrets.EC2_USER }}/deploy"
+      - name: Deploy to EC2
+        if: github.event_name == 'workflow_dispatch'
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
           script: |
-            echo "Docker compose file copied to EC2"
             cd /home/${{ secrets.EC2_USER }}/deploy/deploy/${{ env.ENV }}
             export API_REST_VERSION=${{ env.API_REST_VERSION }}
             export MONGO_INITDB_ROOT_USERNAME=${{ env.MONGO_INITDB_ROOT_USERNAME }}
@@ -77,3 +84,4 @@ jobs:
             echo "API_REST_VERSION=${{ env.API_REST_VERSION }}"
             docker-compose -f deploy.yml down
             docker-compose -f deploy.yml up -d
+            docker system prune -f
