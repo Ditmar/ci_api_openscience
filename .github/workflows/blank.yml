@@ -66,3 +66,5 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
+          source: "deploy/${{ env.ENV }}/deploy.yml"
+          target: "/home/${{ secrets.EC2_USER }}/deploy.yml"
